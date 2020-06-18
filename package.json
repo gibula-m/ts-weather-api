@@ -4,8 +4,8 @@
   "description": "",
   "main": "./build/src/app/app.js",
   "scripts": {
-    "test": "jest test.js",
-    "start": "node build/src/app/app.js"
+    "test": "tsc && jest test.js",
+    "start": "tsc && node build/src/app/app.js"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.0",
-    "jest": "^26.0.1"
+    "jest": "^26.0.1",
+    "typescript": "^3.9.5"
   }
 }
