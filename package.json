@@ -2,10 +2,10 @@
   "name": "terminal_api",
   "version": "1.0.0",
   "description": "",
-  "main": "./build/app/app.js",
+  "main": "./build/src/app/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node build/app/app.js"
+    "test": "jest test.js",
+    "start": "node build/src/app/app.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,5 +15,9 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "tsc": "^1.20150623.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.0",
+    "jest": "^26.0.1"
   }
 }
