@@ -4,7 +4,7 @@
   "description": "",
   "main": "./build/src/app/app.js",
   "scripts": {
-    "test": "tsc && jest test.js",
+    "test": "tsc && jest test.js --coverage",
     "start": "tsc && node build/src/app/app.js"
   },
   "author": "",
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@types/jest": "^26.0.0",
     "jest": "^26.0.1",
+    "nyc": "^15.1.0",
     "typescript": "^3.9.5"
   }
 }
