@@ -1,7 +1,7 @@
 import { Request,Response,NextFunction } from 'express';
 import { Payment } from '../interfaces/Payment';
 import { ResponseWrapper } from '../interfaces/Response';
-import { HttpError } from '../class/HttpError'
+import { HttpError } from '../errors/HttpError'
 
 
 export const getIndex = (req : Request, res : Response, next : NextFunction) => {

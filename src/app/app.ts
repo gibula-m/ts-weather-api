@@ -1,12 +1,10 @@
 import express from 'express';
-import * as dotenv from 'dotenv';
 import * as homeController from '../controllers/homeController';
 import * as bodyParser from 'body-parser';
 import { errorHandler } from '../middleware/Errors';
 import { Request,Response,NextFunction } from 'express';
 
 const app = express();
-dotenv.config();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
