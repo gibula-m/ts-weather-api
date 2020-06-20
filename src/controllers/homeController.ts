@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
-import {Payment} from '../interfaces/Payment';
-import {ResponseWrapper} from '../interfaces/Response';
+import {Payment} from '../types/Payment';
+import {ResponseWrapper} from '../types/Response';
 import {HttpError} from '../errors/HttpError';
 
 
