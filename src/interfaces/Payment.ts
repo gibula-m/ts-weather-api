@@ -1,5 +1,5 @@
 export interface Payment{
-  id : String,
-  value : Number,
-  clientId : String
+  id : string,
+  value : number,
+  clientId : string
 }

@@ -11,6 +11,7 @@
     "google"
   ],
   "rules":{
-    "no-console": 1
+    "no-console": 1,
+    "require-jsdoc": 0
     }
 }

@@ -1,5 +1,5 @@
 export interface ResponseWrapper{
-  status : Number,
-  message : String,
+  status : number,
+  message : string,
   incomingData : any
 }

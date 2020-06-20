@@ -1,5 +1,5 @@
-import { Request,Response,NextFunction } from 'express';
+import {Response} from 'express';
 
-export const errorHandler = (err : any, res : any) => {
+export const errorHandler = (err : any, res : Response) => {
   res.status(err.statusCode).json(err);
 };
