@@ -5,6 +5,7 @@
   "main": "./build/src/app/app.js",
   "scripts": {
     "test": "tsc && jest test.js --coverage",
+    "lint": "eslint . --ext .ts",
     "start": "tsc && node build/src/app/app.js"
   },
   "author": "",
@@ -19,6 +20,10 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.0",
+    "@typescript-eslint/eslint-plugin": "^3.3.0",
+    "@typescript-eslint/parser": "^3.3.0",
+    "eslint": "^7.3.0",
+    "eslint-config-google": "^0.14.0",
     "jest": "^26.0.1",
     "nyc": "^15.1.0",
     "typescript": "^3.9.5"
