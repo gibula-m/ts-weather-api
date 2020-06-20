@@ -1,7 +1,9 @@
 import {Connection} from 'amqplib/callback_api';
 
-declare namespace Express {
-   export interface Request {
-      rabbitConnection : Connection
-   }
+declare global {
+    namespace Express {
+        export interface Request {
+            rabbitChannel : Channel
+        }
+    }
 }

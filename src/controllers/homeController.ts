@@ -20,6 +20,6 @@ export const postIndex = (req : Request, res : Response) => {
     message: 'Great!',
     incomingData: incomingData,
   };
-
+  
   res.send(response);
 };
