@@ -9,7 +9,7 @@ export const getIndex = async (req : Request, res : Response)=>{
   const msg = await RMQManager.get('payments');
   const cached = await RedisManager.get('payment');
   if (msg !== false && cached) {
-    res.send("From queue : " + msg + " cached : " + cached);
+    res.send('From queue : ' + msg + ' cached : ' + cached);
   } else {
     throw new HttpError(400, 'Queue is empty');
   }
