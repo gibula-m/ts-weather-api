@@ -7,9 +7,9 @@ import * as RMQManager from '../libs/Rabbit';
 
 export const getIndex = async (req : Request, res : Response)=>{
   const msg = await RMQManager.get('payments');
-  if(msg !== false){
+  if (msg !== false) {
     res.send(JSON.parse(msg));
-  }else{
+  } else {
     throw new HttpError(400, 'Queue is empty');
   }
 };
@@ -21,7 +21,7 @@ export const postIndex = (req : Request, res : Response) => {
     throw new HttpError(400, 'Payment ID is necessary');
   }
 
-  RMQManager.queue('payments',JSON.stringify(incomingData));
+  RMQManager.queue('payments', JSON.stringify(incomingData));
 
   const response : ResponseWrapper = {
     status: 200,
