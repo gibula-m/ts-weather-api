@@ -6,8 +6,12 @@ import * as RMQManager from '../libs/Rabbit';
 
 
 export const getIndex = async (req : Request, res : Response)=>{
-  RMQManager.get('payments');
-  res.status(200).end();
+  const msg = await RMQManager.get('payments');
+  if(msg !== false){
+    res.send(JSON.parse(msg));
+  }else{
+    throw new HttpError(400, 'Queue is empty');
+  }
 };
 
 export const postIndex = (req : Request, res : Response) => {

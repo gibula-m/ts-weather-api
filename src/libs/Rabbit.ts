@@ -1,37 +1,28 @@
-import amqp, { Message } from 'amqplib/callback_api';
+import amqp, { Message, Connection } from 'amqplib';
 
 const connURL = 'amqp://localhost';
 
 export const queue = async (queueName : string, msg : string) => {
-  amqp.connect(connURL, function(err, connection) {
-    if (err) throw err;
-    connection.createChannel(function(error1, channel) {
-      if (error1) {
-        throw error1;
-      }
+  let connection = await amqp.connect(connURL);
+  let ch = await connection.createChannel();
 
-      channel.assertQueue(queueName,{durable: true});
-      channel.sendToQueue(queueName, Buffer.from(msg));
-      console.log("Sent to Queue : " + queueName + " msg : " + msg);
-    });
-  });
+  ch.assertQueue(queueName,{durable: true});
+  ch.sendToQueue(queueName, Buffer.from(msg));
+  
+  console.log("Sent to Queue : " + queueName + " msg : " + msg);
+  return true;
 };
 
 export const get = async (queueName : string) => {
-  amqp.connect(connURL, function(err, connection) {
-    if (err) throw err;
-    connection.createChannel(function(error1, channel) {
-      if (error1) {
-        throw error1;
-      }
+  const connection = await amqp.connect(connURL);
+  const ch = await connection.createChannel();
+  await ch.assertQueue(queueName,{durable: true});
+  await ch.prefetch(1);
 
-      channel.assertQueue(queueName,{durable: true});
-      channel.prefetch(1);
-      channel.consume(queueName, getMessage,{noAck:false});
-    });
-  });
+  let msg = await ch.get(queueName,{noAck:true});
+  if(msg !== false){
+    return msg.content.toString();
+  }else{
+    return false;
+  }
 };
-
-const getMessage = (msg : Message) => {
-  console.log(Buffer.from(msg.content).toString());
-}
