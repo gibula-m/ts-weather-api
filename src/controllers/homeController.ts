@@ -1,11 +1,17 @@
 import {Request, Response} from 'express';
-import {Payment} from '../interfaces/Payment';
-import {ResponseWrapper} from '../interfaces/Response';
+import {Payment} from '../types/Payment';
+import {ResponseWrapper} from '../types/Response';
 import {HttpError} from '../errors/HttpError';
+import * as RMQManager from '../libs/Rabbit';
 
 
-export const getIndex = (req : Request, res : Response)=>{
-  res.status(200).end();
+export const getIndex = async (req : Request, res : Response)=>{
+  const msg = await RMQManager.get('payments');
+  if (msg !== false) {
+    res.send(JSON.parse(msg));
+  } else {
+    throw new HttpError(400, 'Queue is empty');
+  }
 };
 
 export const postIndex = (req : Request, res : Response) => {
@@ -14,6 +20,8 @@ export const postIndex = (req : Request, res : Response) => {
   if (!incomingData.id) {
     throw new HttpError(400, 'Payment ID is necessary');
   }
+
+  RMQManager.queue('payments', JSON.stringify(incomingData));
 
   const response : ResponseWrapper = {
     status: 200,

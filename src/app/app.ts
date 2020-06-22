@@ -16,4 +16,6 @@ app.use((err : Error, req : Request, res : Response, next : NextFunction) => {
   errorHandler(err, res);
 });
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT, function() {
+  console.log('App listening on port : ' + process.env.PORT);
+});

@@ -12,6 +12,7 @@
   ],
   "rules":{
     "no-console": 1,
-    "require-jsdoc": 0
+    "require-jsdoc": 0,
+    "camelcase":2
     }
 }
