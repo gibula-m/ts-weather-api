@@ -8,7 +8,7 @@ export const set = (key : string, value : string) => {
 export const get = async (key : string) => {
   const client = redis.createClient();
   return client.get(key, (err, value) => {
-    if(err){
+    if (err) {
       return false;
     }
     return value;
